@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  opstwin:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - PORT=3001
+      - NODE_ENV=production
+      - CORS_ORIGIN=*
+      - DB_PATH=/app/data/opstwin.db
+      - SIMULATION_TICK_MS=500
+    volumes:
+      - opstwin-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  opstwin-data:
