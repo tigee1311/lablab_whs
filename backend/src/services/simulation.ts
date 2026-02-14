@@ -22,6 +22,7 @@ export class SimulationEngine {
   private taskSteps: Map<string, string[]> = new Map(); // orderId -> remaining steps
   private startTime = Date.now();
   private totalTaskTimeMs = 0;
+  private tickMs = 500;
 
   constructor(broadcast: BroadcastFn) {
     this.broadcast = broadcast;
@@ -100,6 +101,7 @@ export class SimulationEngine {
 
   start(tickMs: number): void {
     if (this.interval) return;
+    this.tickMs = tickMs;
     this.interval = setInterval(() => this.update(), tickMs);
     console.log(`Simulation started with ${tickMs}ms tick interval`);
   }
@@ -451,6 +453,7 @@ export class SimulationEngine {
   }
 
   resetSimulation(): void {
+    const tickMs = this.interval ? 500 : 500;
     this.stop();
     this.tick = 0;
     this.orders.clear();
@@ -472,5 +475,8 @@ export class SimulationEngine {
     this.startTime = Date.now();
 
     this.broadcast({ type: "simulation_reset", payload: this.getState() });
+
+    // Restart the tick loop
+    this.start(this.tickMs);
   }
 }
