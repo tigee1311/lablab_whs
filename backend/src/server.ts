@@ -45,8 +45,11 @@ if (process.env.NODE_ENV === "production") {
   const publicDir = path.join(__dirname, "..", "public");
   console.log("Serving static files from:", publicDir);
   app.use(express.static(publicDir));
-  // SPA fallback — serve index.html for all non-API routes
-  app.get("*", (_req, res) => {
+  // SPA fallback — serve index.html for non-API, non-WS routes only
+  app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/api") || req.path.startsWith("/ws")) {
+      return next();
+    }
     res.sendFile(path.join(publicDir, "index.html"));
   });
 }
