@@ -10,7 +10,11 @@ if (!fs.existsSync(dir)) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
-const db = new Database(DB_PATH);
+// const db = new Database(DB_PATH);
+// const DB_PATH = "./database.sqlite";
+const db: any = new Database(DB_PATH);
+export { db };
+
 db.pragma("journal_mode = WAL");
 db.pragma("foreign_keys = ON");
 

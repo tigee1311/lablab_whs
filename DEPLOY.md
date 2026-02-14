@@ -19,8 +19,8 @@ curl -fsSL https://get.docker.com | sh
 
 ### 3. Clone the repo
 ```bash
-git clone https://github.com/YOUR_USERNAME/opstwin-ai.git
-cd opstwin-ai
+git clone https://github.com/tigee1311/lablab_whs.git
+cd lablab_whs
 ```
 
 ### 4. Set environment variables
@@ -46,8 +46,8 @@ apt-get install -y nodejs
 
 ### 2. Clone and install
 ```bash
-git clone https://github.com/YOUR_USERNAME/opstwin-ai.git
-cd opstwin-ai
+git clone https://github.com/tigee1311/lablab_whs.git
+cd lablab_whs
 
 cd backend && npm install && npm run build && cd ..
 cd frontend && npm install && npm run build && cd ..
