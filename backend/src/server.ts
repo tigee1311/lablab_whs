@@ -20,7 +20,11 @@ console.log("Database initialized");
 
 // Express app
 const app = express();
-app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
+if (CORS_ORIGIN === "*") {
+  app.use(cors());
+} else {
+  app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
+}
 app.use(express.json());
 
 // HTTP server (shared with WebSocket)
@@ -37,8 +41,11 @@ app.use("/api", createApiRouter(simulation));
 
 // Serve frontend in production
 if (process.env.NODE_ENV === "production") {
+  // When compiled: __dirname = /app/backend/dist, public = /app/backend/public
   const publicDir = path.join(__dirname, "..", "public");
+  console.log("Serving static files from:", publicDir);
   app.use(express.static(publicDir));
+  // SPA fallback — serve index.html for all non-API routes
   app.get("*", (_req, res) => {
     res.sendFile(path.join(publicDir, "index.html"));
   });

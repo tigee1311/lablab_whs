@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/eventlog.tsx","./src/components/kpidashboard.tsx","./src/components/orderpanel.tsx","./src/components/warehousecanvas.tsx","./src/hooks/usewebsocket.ts","./src/types/index.ts","./src/utils/api.ts"],"version":"5.9.3"}

@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://66.42.126.51:3001/api/$1"
+    },
+    {
+      "source": "/ws",
+      "destination": "http://66.42.126.51:3001/ws"
+    }
+  ]
+}
+
